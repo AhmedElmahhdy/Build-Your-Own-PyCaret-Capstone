@@ -7,6 +7,7 @@ st.title("Automated Machine Learning App")
 
 # Step 1: Upload Data
 uploaded_file = st.file_uploader("Upload your dataset", type=["csv", "xlsx"])
+print("=================>>>>>",uploaded_file)
 if uploaded_file is not None:
     df = data_handler.load_data(uploaded_file)
     st.write(df.head())
