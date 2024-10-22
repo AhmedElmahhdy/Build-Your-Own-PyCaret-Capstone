@@ -11,3 +11,15 @@ In this capstone project, participants will engage with PyCaret, an open-source,
 - The package and web app should be thoroughly tested across various datasets to ensure they consistently identify the best machine learning model for each dataset and are free of errors.
 - Participants should demonstrate a comprehensive understanding of PyCaret by effectively applying its features in the package, especially the AutoML functionality for optimal model selection.
 - Clear documentation and guidelines for using the package and web app should be provided to ensure users can fully utilize all available functionalities.
+
+## Installation
+1- Clone the repository:
+```bash
+git clone https://github.com/your-username/AhmedElmahhdy/Build-Your-Own-PyCaret-Capstone
+```
+2- run Streamlit command
+```bash
+streamlit run app.py
+```
+3- Upload your dataset (csv , xlsx)
+
