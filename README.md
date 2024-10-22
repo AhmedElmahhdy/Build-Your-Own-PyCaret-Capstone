@@ -15,7 +15,7 @@ In this capstone project, participants will engage with PyCaret, an open-source,
 ## Installation
 1- Clone the repository:
 ```bash
-git clone https://github.com/your-username/AhmedElmahhdy/Build-Your-Own-PyCaret-Capstone
+git clone https://github.com/AhmedElmahhdy/Build-Your-Own-PyCaret-Capstone
 ```
 2- run Streamlit command
 ```bash
