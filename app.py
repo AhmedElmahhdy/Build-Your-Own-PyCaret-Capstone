@@ -1,6 +1,7 @@
 # app.py
 import streamlit as st # type: ignore
 import pandas as pd
+from xgboost import XGBClassifier
 from utils import data_handler, eda, model_training, automl
 
 st.title("Automated Machine Learning App")
@@ -24,11 +25,15 @@ if uploaded_file is not None:
     model_type = st.selectbox("Model Type", ['classifier', 'regressor'])
     if st.button("Train Model"):
         score, model = model_training.train_model(df, target_variable, model_type)
-        st.write(f"Model Score: {score}")
+        st.write(f"Model Score: {score}  ||  Model: {model}")
 
     # Step 5: AutoML
     if st.button("Run AutoML"):
         X = df.drop(columns=[target_variable])
-        y = df[target_variable]
-        best_model, best_score = automl.automl_classifier(X, y)
+        y = df[target_variable].astype(int)
+        best_model, best_score , model_scores = automl.automl_classifier(X, y)
         st.write(f"Best Model: {best_model}, Score: {best_score}")
+        st.write("==============================")
+        for score in model_scores:
+            st.write(f"{score}: {model_scores[score]}")
+    
