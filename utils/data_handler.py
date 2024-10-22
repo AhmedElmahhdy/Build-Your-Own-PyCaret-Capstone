@@ -2,7 +2,6 @@ import pandas as pd
 
 def load_data(file_path):
     """Load data from a file."""
-    print(file_path)
     if file_path.name.endswith('.csv'):
         return pd.read_csv(file_path)
     elif file_path.name.endswith('.xlsx'):
