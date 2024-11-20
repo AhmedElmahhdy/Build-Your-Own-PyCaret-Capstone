@@ -7,9 +7,10 @@ def train_model(df, target_column, model_type='classifier', model_name='RandomFo
     """Train a machine learning model."""
     X = df.drop(columns=[target_column])
     y = df[target_column]
+    print(X,y)
     
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    
+    print(X_train,  y_train)
     if model_type == 'classifier':
         model = RandomForestClassifier() if model_name == 'RandomForest' else None
         model.fit(X_train, y_train)
