@@ -1,7 +1,7 @@
 import streamlit as st # type: ignore
 import pandas as pd
 from xgboost import XGBClassifier
-from utils import data_handler, eda, model_training, automl
+from utils import data_handler, eda, model_training, automl, detect_model_type
 
 st.title("Automated Machine Learning App")
 
@@ -25,10 +25,11 @@ if uploaded_file is not None:
        
     # Select Target Variable
     target_variable = st.selectbox("Select Target Variable", df.columns)
+    model_type = detect_model_type.detect_task_type(df[target_variable])
+    st.write(" Model Type is :",model_type)
 
 
-    # Model Selection
-    model_type = st.selectbox("Model Type", ['classifier', 'regressor'])
+    # Train Model
     if st.button("Train Model"):
         df = eda.convert_categorical_to_numeric(df)
         st.write("Training Model...")
