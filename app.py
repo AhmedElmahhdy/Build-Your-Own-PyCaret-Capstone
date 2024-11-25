@@ -51,18 +51,7 @@ if uploaded_file is not None:
             st.write(df)
         else:
             st.write(f"Column '{column_to_drop}' not found in the dataset.")
-        # try:
-        #     print("============== we are here in button ==============")
-        #     if column_to_drop in df.columns:
-        #         print("============== we are here in if ==============")
-        #         df = eda.drop_columns(df, column_to_drop)
-        #         print("============== we are here after drop ==============")
-        #         st.write(f"Updated Dataset (after dropping '{column_to_drop}'):")
-        #         st.write(df)
-        #     else:
-        #         st.write(f"Column '{column_to_drop}' not found in the dataset.")
-        # except Exception as e:
-        #     st.write(e)
+
        
     # Select Target Variable
     target_variable = st.selectbox("Select Target Variable", df.columns)
