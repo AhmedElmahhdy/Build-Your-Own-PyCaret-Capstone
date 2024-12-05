@@ -18,13 +18,6 @@ def detect_task_type(y):
     # Check if target variable is categorical
     if y.dtype.name == 'object' or y.dtype.name == 'category':
         return "classifier"
-    
-    # Count unique values
-    unique_values = y.nunique()
-    print("Unique values:", unique_values)
-
-    # allow for a maximum of 20 unique values
-    if unique_values <= 20:
-        return "classifier"
     else:
         return "regressor"
+

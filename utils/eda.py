@@ -57,5 +57,5 @@ def categorical_variables(df):
 
 def drop_columns(df, columns_to_drop):
     # Drop specified columns
-    df = df.drop(columns=columns_to_drop)
-    return df
+    df_dropped = df.drop(columns=map(str, columns_to_drop))
+    return df_dropped

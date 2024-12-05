@@ -13,27 +13,29 @@ if uploaded_file is not None:
 
 
     # EDA
-    st.write("Perform EDA")
-    df_summary = eda.summary_statistics(df)
-    st.write("Summary Statistics:\n", df_summary)
+    if st.button("Perform EDA"):
+        df_summary = eda.summary_statistics(df)
+        st.write("Summary Statistics:\n", df_summary)
 
     # Handle Missing Continuous Values
     continuous_cols , missing_continuous_values = eda.continuous_variables(df)
     st.write("Continuous Features:\n", continuous_cols) 
     st.write("Total Missing Values:\n", missing_continuous_values)
     if missing_continuous_values > 0:
-        handle_way = st.selectbox("Handle Missing Values in continuous variables", ['Mean', 'Median', 'Mode'])
-        df = eda.handle_missing_continuous_values(df, handle_way)
-        st.write("Data after handling missing values:\n",df)
+        handle_way = st.selectbox("Handle Missing Values in continuous variables", ['Choose Way','Mean', 'Median', 'Mode'])
+        if handle_way != 'Choose Way':
+            df = eda.handle_missing_continuous_values(df, handle_way)
+            st.write("Data after handling missing values:\n",df)
     
     # Handle Missing Categorical Data
     categorical_cols , missing_categorical_values = eda.categorical_variables(df)
     st.write("Categorical Features:\n", categorical_cols) 
     st.write("Missing Values in Categorical Features:\n", missing_categorical_values)
     if missing_categorical_values > 0:
-        handle_way = st.selectbox("Handle Missing Values in categorical variables", ['Mode','Additional Class'])
-        df = eda.handle_categorical_data(df, handle_way)
-        st.write("Data after handling missing values:\n",df)
+        handle_way = st.selectbox("Handle Missing Values in categorical variables", ['Choose Way','Mode','Additional Class'])
+        if handle_way != 'Choose Way':
+            df = eda.handle_categorical_data(df, handle_way)
+            st.write("Data after handling missing values:\n",df)
     
         
         
@@ -41,21 +43,20 @@ if uploaded_file is not None:
         
 # Drop Columns
     st.write("Drop Columns")
-    column_to_drop = st.selectbox("Select columns to drop",df.columns)
-
-
+    columns_to_drop = st.multiselect("Select columns to drop",df.columns)
     if st.button("Drop Selected Columns"):
-        if column_to_drop in df.columns:
-            df = eda.drop_columns(df, column_to_drop)
-            st.write(f"Updated Dataset (after dropping '{column_to_drop}'):")
-            st.write(df)
-        else:
-            st.write(f"Column '{column_to_drop}' not found in the dataset.")
+        df = eda.drop_columns(df, columns_to_drop)
+        st.write(f"Updated Dataset (after dropping '{columns_to_drop}'):")
+        st.write(df)
+        columns_to_drop = []
+    
 
        
     # Select Target Variable
     target_variable = st.selectbox("Select Target Variable", df.columns)
+    print(df.columns)
     model_type = detect_model_type.detect_task_type(df[target_variable])
+    print(model_type)
     st.write(" Model Type is :",model_type)
 
 
